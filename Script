@@ -1,0 +1,108 @@
+package Mamaearth;
+
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class mamaearth {
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		WebDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		Actions act=new Actions(driver);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		driver.get("https://mamaearth.in/?srsltid=AfmBOop3DBnlM9nLfSHOq7INq9lyQNQCj7xVsqUIjmm-LNB02U45Rt02");
+		
+		String title=driver.getTitle();
+		String oTitle="Mamaearth Sale is Live with Buy1 Get1 Free Offer";
+		
+		if(oTitle.equals(title))
+		{
+			System.out.println("Welcome to MamaEarth Official WebPage");
+		}
+		else
+		{
+			System.out.println("Sorry to Say You are on the wrong page");
+		}
+		
+	    WebElement bestSeller =driver.findElement(By.xpath("//*[@class='sc-kgAjT fXftPq productCarousel']"));
+	    act.moveToElement(bestSeller).build().perform();
+	    
+	    WebElement product=driver.findElement(By.xpath("//*[@id=\"slides\"]/div[2]/div[1]/div/div[1]/div/div/img"));
+	    act.moveToElement(product).click().build().perform();
+	    
+	    WebElement ml100ml=driver.findElement(By.xpath("//*[@id=\"__next\"]/div[4]/div/div[1]/div/div[2]/div/div[5]/div/div/div/div[1]/div"));
+	    act.moveToElement(ml100ml).click().build().perform();
+	    
+	    WebElement size=driver.findElement(By.xpath("//span[@id='title' and text()='150 ml']"));
+	    act.moveToElement(size).click().build().perform();
+	    
+	     int i=sc.nextInt();
+	     
+	     for(int j=0; j<i; j++)
+	     {
+	    	 driver.findElement(By.xpath("//*[@id=\"__next\"]/div[4]/div/div[1]/div/div[5]/div/div[2]/div[5]/div/div[2]/button[2]")).click();
+	    	 
+	     }
+	     
+	     WebElement addCart=driver.findElement(By.xpath("//*[@class='addTocart_pdp']"));
+	     act.moveToElement(addCart).click().build().perform();
+	     
+	    WebElement cart=driver.findElement(By.xpath("//*[@class='cart-icon']"));
+	    act.moveToElement(cart).click().build().perform();
+	    
+	    try
+	    {
+	        WebElement coupon=driver.findElement(By.xpath("class=\"sc-ijnzTp bCmpmr\""));
+	        if(coupon!=null && coupon.equals("sc-ijnzTp bCmpmr"))
+	        {
+	        	driver.findElement(By.xpath("/html/body/div[3]/div[4]/div[1]/div[2]/div/div/div[1]/div[3]/div[2]")).click();	        	
+	        }	        		
+	    }
+	    catch(Exception e)
+	    {	    	
+	    	driver.findElements(By.xpath("//*[text()='Add address']"));	
+	    }
+	     
+	    WebElement first_name=driver.findElement(By.xpath("//*[@placeholder='First Name']"));
+	    act.moveToElement(first_name).sendKeys("Ashish").perform();
+	     driver.close();
+	     
+	     WebElement last_name=driver.findElement(By.xpath("//*[@placeholder='Last Name']"));
+	     act.moveToElement(last_name).sendKeys("Kumar").perform();	
+	     
+	     WebElement emailId=driver.findElement(By.xpath("//*[@placeholder='Email Id']"));
+	     act.moveToElement(emailId).sendKeys("ashishkumar267031@gmail.com").perform();
+	     
+	     WebElement phone_number=driver.findElement(By.xpath("//*[@placeholder='Last Name']"));
+	     act.moveToElement(phone_number).sendKeys("6201257288").perform();	
+	     
+	     WebElement pincode =driver.findElement(By.xpath("//*[@placeholder='Pincode']"));
+	     act.moveToElement(pincode).sendKeys("843109").perform();	
+	     
+	     WebElement city=driver.findElement(By.xpath("//*[@placeholder='City']"));
+	     act.moveToElement(city).sendKeys("Muzaffarpur").perform();	
+	     
+	     WebElement state=driver.findElement(By.xpath("//*[@placeholder='State']"));
+	     act.moveToElement(state).sendKeys("Bihar").perform();	
+	     
+	     WebElement address=driver.findElement(By.xpath("//*[@placeholder='Address']"));
+	     act.moveToElement(address).sendKeys("V.P.O-BARKAGAON, NEW CHOWK").perform();	
+	     
+	     WebElement saveAddress=driver.findElement(By.xpath("//*[text()='SAVE ADDRESS']"));
+	     act.moveToElement(saveAddress).click().perform();
+	     
+	     WebElement placeOrder=driver.findElement(By.xpath("//*[text()='Place order']"));
+	     act.moveToElement(placeOrder).click().perform();
+	
+	}
+
+}
